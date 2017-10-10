@@ -31,7 +31,9 @@
     "react-dnd-html5-backend": "^2.5.1",
     "react-dom": "^15.6.1",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.8.2"
+    "webpack-dev-server": "^2.8.2",
+    "xml-query": "^1.4.0",
+    "xml-reader": "^2.4.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.0",

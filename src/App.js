@@ -1,4 +1,5 @@
 import React from "react";
+require("lib/SampleXQuery");
 
 export default class App extends React.Component {
 
