@@ -6,8 +6,7 @@ export default class CurrencyConvert extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      convertFrom: "",
-      convertTo: "",
+      convertFrom: 0,
       convertFromCurrency: null,
       convertToCurrency: null
     };
@@ -59,17 +58,18 @@ export default class CurrencyConvert extends React.Component {
     this.setState({ convertFrom: event.target.value });
   }
 
-  handleChangeConvertTo() {
-    this.setState({ convertTo: event.target.value });
-  }
-
   convertCurrencies() {
     if (_.isEmpty(this.state.convertFromCurrency) ||
       _.isEmpty(this.state.convertToCurrency)) {
       alert("Please make sure currencies are properly selected");
     }
     else {
-      
+      var fromToEUR = 1 / this.state.convertFromCurrency.rate;
+      var totalEur = fromToEUR * this.state.convertFrom;
+
+      this.setState({
+        convertTo: totalEur * this.state.convertToCurrency.rate
+      });
     }
   }
 
@@ -108,8 +108,7 @@ export default class CurrencyConvert extends React.Component {
             <input
               type="text"
               value={this.state.convertTo}
-              pattern="[0-9]+\.{0,1}[0-9]*"
-              onInput={(event) => this.allowDigitsOnly('convertTo', event)}
+              disabled={true}
             />
             <Dropdown
               title="Select Currency"
