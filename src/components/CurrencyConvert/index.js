@@ -6,8 +6,8 @@ export default class CurrencyConvert extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      convertFrom: 0,
-      convertTo: 0,
+      convertFrom: "",
+      convertTo: "",
       convertFromCurrency: null,
       convertToCurrency: null
     };
@@ -18,9 +18,23 @@ export default class CurrencyConvert extends React.Component {
     this.allowDigitsOnly = this.allowDigitsOnly.bind(this);
   }
 
-  allowDigitsOnly(event)
-  {
-    return event.charCode >= 48 && event.charCode <= 57;
+  allowDigitsOnly(controlName, event) {
+    let val = (event.target.validity.valid) ? event.target.value : null;
+
+    if (_.isEqual(controlName, "convertTo")) {
+      if (val !== null) {
+        this.setState({
+          convertTo: val
+        })
+      }
+    }
+    else if (_.isEqual(controlName, "convertFrom")) {
+      if (val !== null) {
+        this.setState({
+          convertFrom: val
+        })
+      }
+    }
   }
 
   drpDnFromClick(title, value) {
@@ -49,22 +63,32 @@ export default class CurrencyConvert extends React.Component {
     this.setState({ convertTo: event.target.value });
   }
 
+  convertCurrencies() {
+    if (_.isEmpty(this.state.convertFromCurrency) ||
+      _.isEmpty(this.state.convertToCurrency)) {
+      alert("Please make sure currencies are properly selected");
+    }
+    else {
+      
+    }
+  }
+
   render() {
     return (
       <div className="row">
         <div
           className="col-md-5"
           style={{
-            backgroundColor: "yellow"
+            backgroundColor: "transparent"
           }}
         >
-          <div className="row">
+          <div className="col-md-offset-5">
             <p>Convert From</p>
             <input
               type="text"
               value={this.state.convertFrom}
-              onChange={this.handleChangeConvertFrom}
-              onKeyPress={this.allowDigitsOnly}
+              pattern="[0-9]+\.{0,1}[0-9]*"
+              onInput={(event) => this.allowDigitsOnly('convertFrom', event)}
             />
             <Dropdown
               title="Select Currency"
@@ -76,16 +100,16 @@ export default class CurrencyConvert extends React.Component {
         <div
           className="col-md-5"
           style={{
-            backgroundColor: "pink"
+            backgroundColor: "transparent"
           }}
         >
-          <div className="row">
+          <div className="col-md-offset-5">
             <p>Convert To</p>
             <input
               type="text"
               value={this.state.convertTo}
-              onChange={this.handleChangeConvertTo}
-              onKeyPress={this.allowDigitsOnly}
+              pattern="[0-9]+\.{0,1}[0-9]*"
+              onInput={(event) => this.allowDigitsOnly('convertTo', event)}
             />
             <Dropdown
               title="Select Currency"
@@ -97,7 +121,7 @@ export default class CurrencyConvert extends React.Component {
         <div
           className="col-md-2"
           style={{
-            backgroundColor: "aqua"
+            backgroundColor: "transparent"
           }}
         >
           <button
@@ -107,6 +131,7 @@ export default class CurrencyConvert extends React.Component {
               marginRight: 10,
               marginTop: 10
             }}
+            onClick={() => this.convertCurrencies()}
           >
             Convert
           </button>

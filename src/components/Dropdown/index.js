@@ -31,7 +31,7 @@ export default class Dropdown extends React.Component {
 
   render() {
     return (
-      <div className="dropdown">
+      <div className="dropdown" role="menu">
         <button
           className="btn btn-primary dropdown-toggle"
           type="button"

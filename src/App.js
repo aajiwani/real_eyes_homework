@@ -14,18 +14,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <button
-          type="button"
-          className="btn btn-info pull-right"
-          style={{
-            marginRight: 10,
-            marginTop: 10
-          }}
-          onClick={this.reloadData}
-        >
-          Reload data
+      <div>
+        <div className="row">
+          <button
+            type="button"
+            className="btn btn-info pull-right"
+            style={{
+              margin: 10
+            }}
+            onClick={this.reloadData}
+          >
+            Reload data
         </button>
+        </div>
         <div className="container">
           <ExchangeDataComponent ref={inst => (this.dataExchange = inst)} />
         </div>
