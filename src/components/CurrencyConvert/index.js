@@ -11,7 +11,6 @@ export default class CurrencyConvert extends React.Component {
       convertToCurrency: null
     };
     this.handleChangeConvertFrom = this.handleChangeConvertFrom.bind(this);
-    this.handleChangeConvertTo = this.handleChangeConvertTo.bind(this);
     this.drpDnFromClick = this.drpDnFromClick.bind(this);
     this.drpDnToClick = this.drpDnToClick.bind(this);
     this.allowDigitsOnly = this.allowDigitsOnly.bind(this);

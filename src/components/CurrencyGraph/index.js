@@ -7,8 +7,6 @@ import moment from "moment";
 export default class CurrencyGraph extends React.Component {
   constructor(props) {
     super(props);
-    //currencyData
-    console.dir(props);
     this.availableCurrencies = props.currencyData[0].conversions.map(option => {
       return {
         title: option.currency,
